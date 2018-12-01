@@ -99,7 +99,8 @@ public class WeatherApp extends Configured implements Tool {
         	
         	for (String yearKey : yearTemperatureMap.keySet()) {
         		year.setYear(Integer.valueOf(yearKey));
-        		average = yearTemperatureMap.get(yearKey) / yearCounterMap.get(yearKey);
+                average = yearTemperatureMap.get(yearKey) / yearCounterMap.get(yearKey);
+                average = average / 10;
         		averageTemperature.set(String.valueOf(average));
         		context.write(year, averageTemperature);
         	}
@@ -149,7 +150,10 @@ public class WeatherApp extends Configured implements Tool {
         		counter++;
         	}
         		
-        	average = totalTemperature / counter;	
+            average = totalTemperature / counter;	
+            
+            average = average / 10;
+
         	result.set(average);  
         	
         	year.set(String.valueOf(yearKey.getYear()));
